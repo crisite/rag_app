@@ -1,0 +1,159 @@
+# Python项目通用 .gitignore
+
+### === 核心开发环境 ===
+# 虚拟环境目录
+.venv/
+venv/
+env/
+venv.bak/
+
+# Python缓存文件
+__pycache__/
+*.py[cod]
+
+# 安装包缓存
+pip-wheel-metadata/
+pip-selfcheck.json
+
+### === 开发工具配置 ===
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# PyCharm/IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+bin/
+
+# macOS
+.DS_Store
+
+### === 测试与构建输出 ===
+# 单元测试/代码覆盖率
+.coverage
+htmlcov/
+.coverage.*
+.pytest_cache/
+test-results/
+junit-*.xml
+test-output/
+
+# 构建输出
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+*.whl
+
+### === 文档生成 ===
+docs/_build/
+
+### === 依赖管理 ===
+# pip依赖
+requirements*.txt
+constraints.txt
+
+# Pipenv
+Pipfile
+Pipfile.lock
+python-dateutil==
+
+# Poetry
+poetry.lock
+pyproject.toml
+
+# Setuptools
+develop-eggs/
+
+### === 运行时文件 ===
+# 日志文件
+*.log
+*.log.*
+
+# 环境变量
+.env
+.venv
+.secrets
+keyfile.json
+
+# 数据库文件
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*.dump
+
+### === Jupyter Notebook ===
+# 默认不提交ipynb的checkpoint
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+### === 其他文件 ===
+# 临时文件
+*~
+*.swp
+*.bak
+
+# 大文件
+*.large
+*.h5
+
+### === 配置文件例外 ===
+# 允许特定的配置文件
+!setup.cfg
+!pyproject.toml
+!pylintrc
+!flake8
+!requirements-dev.txt
+
+### === Python项目规范推荐 ===
+# 自定义生成目录 (例如 buildout)
+bin/
+var/
+sdist/
+develop-eggs/
+
+# 安装程序缓存
+.installed.cfg
+lib/
+lib64/
+
+# PyInstaller
+#   Usually these files are written by a python script from a template
+#   before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+cover/
+.tox/
+
+# Translations
+*.mo
+*.pot
+
+# Mr Developer
+.mr.developer.cfg
+
+# Complexity
+output/*.html
+output/*/index.html

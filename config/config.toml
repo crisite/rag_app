@@ -1,0 +1,29 @@
+# RAG配置
+[rag]
+# 向量数据库配置
+[rag.vector_store]
+type = "faiss"  # 向量数据库类型
+dimension = 1536  # 向量维度
+index_path = "data/vector_store"  # 索引存储路径
+
+# 文档处理配置
+[rag.document]
+chunk_size = 1000  # 文档分块大小
+chunk_overlap = 200  # 分块重叠大小
+supported_formats = ["pdf", "docx", "txt", "md"]  # 支持的文档格式
+
+# LLM配置
+[llm]
+# OpenAI配置
+[llm.openai]
+api_key = ""  # OpenAI API密钥
+model = "gpt-3.5-turbo"  # 使用的模型
+temperature = 0.7  # 温度参数
+max_tokens = 2000  # 最大token数
+
+# 本地模型配置
+[llm.local]
+model_path = ""  # 本地模型路径
+device = "cuda"  # 运行设备
+temperature = 0.7
+max_tokens = 2000 
