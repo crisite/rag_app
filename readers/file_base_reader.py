@@ -1,17 +1,16 @@
 from abc import ABC, abstractmethod
-from typing import List, Dict, Any
+from typing import Dict, Any
 import os
 
-
-class BaseFileReader(ABC):
-    """文件读取基类，用于实现不同类型文件的读取"""
+class FileBaseReader(ABC):
+    """文件读取基类"""
     
     def __init__(self, file_path: str):
         """
         初始化文件读取器
         
         Args:
-            file_path (str): 文件路径
+            file_path: 文件路径
         """
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"文件不存在: {file_path}")
@@ -19,22 +18,12 @@ class BaseFileReader(ABC):
         self.content = None
     
     @abstractmethod
-    def read(self) -> str:
+    def read(self) -> Dict[str, Any]:
         """
         读取文件内容
         
         Returns:
-            str: 文件内容
-        """
-        pass
-    
-    @abstractmethod
-    def parse(self) -> List[Dict[str, Any]]:
-        """
-        解析文件内容为结构化数据
-        
-        Returns:
-            List[Dict[str, Any]]: 解析后的结构化数据列表
+            Dict[str, Any]: 包含文件内容和元数据的字典
         """
         pass
     

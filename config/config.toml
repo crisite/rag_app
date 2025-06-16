@@ -1,29 +1,46 @@
-# RAG配置
-[rag]
-# 向量数据库配置
-[rag.vector_store]
-type = "faiss"  # 向量数据库类型
-dimension = 1536  # 向量维度
-index_path = "data/vector_store"  # 索引存储路径
-
-# 文档处理配置
-[rag.document]
-chunk_size = 1000  # 文档分块大小
-chunk_overlap = 200  # 分块重叠大小
-supported_formats = ["pdf", "docx", "txt", "md"]  # 支持的文档格式
-
-# LLM配置
+# Global LLM configuration
 [llm]
-# OpenAI配置
-[llm.openai]
-api_key = ""  # OpenAI API密钥
-model = "gpt-3.5-turbo"  # 使用的模型
-temperature = 0.7  # 温度参数
-max_tokens = 2000  # 最大token数
+api_type = 'ollama'
+model = "qwen2.5-coder:14b"            # The LLM model to use
+base_url = "http://127.0.0.1:11434"   # API endpoint URL
+api_key = "ollama"                     # Your API key
+max_tokens = 4096                      # Maximum number of tokens in the response
+temperature = 0.0                      # Controls randomness
 
-# 本地模型配置
-[llm.local]
-model_path = ""  # 本地模型路径
-device = "cuda"  # 运行设备
-temperature = 0.7
-max_tokens = 2000 
+# Embedding Configuration
+[llm.embedding]
+model = "nomic-embed-text:latest"
+base_url = "http://127.0.0.1:11434"
+api_key = "ollama"                     # Your API key for embedding model
+
+# RAG Configuration
+[rag]
+vector_store_type = "chroma"               # Vector store type (chroma or faiss)
+collection_name = "documents"              # Collection name for vector store
+persist_directory = "data/vector_store"    # Directory to persist vector store
+use_local_splitter = true                 # 使用远程文本切分服务
+
+# Document Processing
+[rag.document]
+supported_formats = ["pdf", "txt", "md", "docx"] # Supported document formats
+max_file_size = 104857600                         # Maximum file size in bytes (100MB)
+document_directory = "data/documents"  # Directory containing documents to process
+
+# File Reader Configuration
+[reader]
+# 支持的文件类型及其对应的读取器类
+supported_types.txt = "TxtReader"
+supported_types.md = "MarkdownReader"
+supported_types.pdf = "PdfReader"
+supported_types.docx = "DocxReader"
+# 默认编码
+default_encoding = "utf-8"
+# 是否递归读取子目录
+recursive = true
+# 是否跳过隐藏文件
+skip_hidden = true
+
+# Agent Configuration
+[agents]
+[agents.supported_agents]
+embedding = { module = "embedding_agent", class = "EmbeddingAgent" }
